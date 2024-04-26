@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CircleCalculator extends Calculator {
+public class CircleCalculator implements Calculator {
     private int result;
     private ArrayList<Double> res_circle = new ArrayList();
     private static final double pi = 3.14; //pi는 변하지 않는 값이기 때문에 static final 작성

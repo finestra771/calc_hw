@@ -1,5 +1,5 @@
 public class SubtractOperator {
-    public int operate(int a, int b) {
+    public double operate(double a, double b) {
         return a - b;
     }
 }

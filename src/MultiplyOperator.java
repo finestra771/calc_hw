@@ -1,5 +1,5 @@
-public class MultiplyOperator {
-    public int operate(int a, int b) {
+public class MultiplyOperator implements Operator{
+    public double operate(double a, double b) {
         return a * b;
     }
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class ArithmeticCalculator extends Calculator {
+public class ArithmeticCalculator implements Calculator {
     private int num1;
     private int num2;
     private double result;
