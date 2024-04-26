@@ -6,6 +6,15 @@ public class Calculator {
     private int result;
     ArrayList<Integer> res = new ArrayList();
 
+    public Calculator(int num1, int num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+    public Calculator(){
+        this.num1 = 0;
+        this.num2 = 0;
+        this.result=0;
+    }
     public int calculate(char operator) {
         switch (operator) {
             case '+':
