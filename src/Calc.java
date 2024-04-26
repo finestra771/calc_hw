@@ -8,7 +8,6 @@ public class Calc {
 
 
 //        int[] res=new int[10];
-        ArrayList<Integer> res = new ArrayList();
         int num = 0;
         while (flag) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -24,7 +23,7 @@ public class Calc {
             calc.setNum2(secondNum);
             result = calc.calculate(operator);
 
-            res.add(result);
+            calc.addResult(result);
 //            num++;
 //            if (num > 10) {
 //                int[] newres = new int[10];
@@ -35,16 +34,14 @@ public class Calc {
 //            }
             System.out.println("결과: " + result);
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-            String line = sc.nextLine();
+            String line=sc.next();
             if (line.equals("remove")) {
-                res.remove(0);
+                calc.removeResult(0);
             }
 
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if (sc.nextLine().equals("inquiry")) {
-                for (Object i : res) {
-                    System.out.print(i + " ");
-                }
+                calc.inquiryResults();
             }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");

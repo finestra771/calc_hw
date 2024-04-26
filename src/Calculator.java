@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public class Calculator {
     private int num1;
     private int num2;
     private int result;
+    ArrayList<Integer> res = new ArrayList();
 
     public int calculate(char operator) {
         switch (operator) {
@@ -68,5 +71,19 @@ public class Calculator {
 
     public void setResult(int result) {
         this.result = result;
+    }
+
+    public void addResult(int num) {
+        res.add(num);
+    }
+
+    public void removeResult(int num) {
+        res.remove(num);
+    }
+
+    public void inquiryResults() {
+        for (Object i : res) {
+            System.out.print(i + " ");
+        }
     }
 }
