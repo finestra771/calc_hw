@@ -5,6 +5,9 @@ public class Calculator {
     private int num2;
     private int result;
     ArrayList<Integer> res = new ArrayList();
+    private ArrayList<Double> res_circle= new ArrayList();
+    private static final double pi=3.14; //pi는 변하지 않는 값이기 때문에 static final 작성
+    private static int radius;
 
     public Calculator(int num1, int num2) {
         this.num1 = num1;
@@ -14,6 +17,8 @@ public class Calculator {
         this.num1 = 0;
         this.num2 = 0;
         this.result=0;
+        this.res_circle.clear();
+        this.radius=0;
     }
     public int calculate(char operator) {
         switch (operator) {
@@ -95,4 +100,22 @@ public class Calculator {
             System.out.print(i + " ");
         }
     }
+    public double calculateCircleArea(int radius){
+        double result=pi*getRadius()*getRadius();
+        res_circle.add(result);
+        return result;
+    }
+    public void setRadius(int radius){
+        this.radius = radius;
+    }
+    public int getRadius(){
+        return radius;
+    }
+
+    public void inquiryCircleResults(){
+        for (Object i : res_circle) {
+            System.out.print(i + " ");
+        }
+    }
+
 }
