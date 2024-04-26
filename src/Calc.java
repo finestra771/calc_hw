@@ -32,6 +32,8 @@ public class Calc {
                         result = 0;
                     }
             }
+            res[num] = result;
+            num++;
         }
     }
 }
