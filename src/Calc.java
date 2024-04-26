@@ -4,9 +4,9 @@ public class Calc {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int[] res=new int[10];
+        int[] res = new int[10];
         boolean flag = true;
-        int num=0;
+        int num = 0;
         while (flag) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
             int firstNum = sc.nextInt();
@@ -34,6 +34,13 @@ public class Calc {
             }
             res[num] = result;
             num++;
+            if (num > 10) {
+                int[] newres = new int[10];
+                for (int i = 0; i < 9; i++) {
+                    newres[i] = res[i];
+                }
+                newres[9] = result;
+            }
+            }
         }
     }
-}
