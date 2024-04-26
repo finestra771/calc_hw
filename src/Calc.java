@@ -20,23 +20,10 @@ public class Calc {
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator = sc.next().charAt(0);
             int result = 0;
-            switch (operator) {
-                case '+':
-                    calc.add(firstNum, secondNum);
-                    break;
-                case '-':
-                    calc.sub(firstNum, secondNum);
-                    break;
-                case '*':
-                    calc.mul(firstNum, secondNum);
-                    break;
-                case '/':
-                    if (secondNum != 0) calc.div(firstNum, secondNum);
-                    else {
-                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                        result = 0;
-                    }
-            }
+            calc.setNum1(firstNum);
+            calc.setNum2(secondNum);
+            result = calc.calculate(operator);
+
             res.add(result);
 //            num++;
 //            if (num > 10) {
@@ -48,8 +35,7 @@ public class Calc {
 //            }
             System.out.println("결과: " + result);
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-            String line=sc.nextLine();
-            System.out.println((int)line.charAt(0));
+            String line = sc.nextLine();
             if (line.equals("remove")) {
                 res.remove(0);
             }
