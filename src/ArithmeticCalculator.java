@@ -6,7 +6,10 @@ public class ArithmeticCalculator extends Calculator {
     private double result;
     private char operator;
     ArrayList<Double> res = new ArrayList();
-
+    AddOperator addOperator;
+    SubtractOperator subtractOperator;
+    MultiplyOperator multiplyOperator;
+    DivideOperator divideOperator;
 
     public ArithmeticCalculator(int num1, int num2) {
         this.num1 = num1;
@@ -17,48 +20,32 @@ public class ArithmeticCalculator extends Calculator {
         this.num1 = 0;
         this.num2 = 0;
         this.result = 0;
+        addOperator = new AddOperator();
+        subtractOperator = new SubtractOperator();
+        multiplyOperator = new MultiplyOperator();
+        divideOperator = new DivideOperator();
     }
 
     public double calc() {
         char operator=getOperator();
         switch (operator) {
             case '+':
-                add(num1, num2);
+                result=addOperator.operate(num1, num2);
                 break;
             case '-':
-                sub(num1, num2);
+                result=subtractOperator.operate(num1, num2);
                 break;
             case '*':
-                mul(num1, num2);
+                result=multiplyOperator.operate(num1, num2);
                 break;
             case '/':
-                if (num2 != 0) div(num1, num2);
+                if (num2 != 0) result=divideOperator.operate(num1, num2);
                 else {
                     System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                     result = 0;
                 }
         }
         addResult(result);
-        return result;
-    }
-
-    public double add(int num1, int num2) {
-        result = num1 + num2;
-        return result;
-    }
-
-    public double sub(int num1, int num2) {
-        result = num1 - num2;
-        return result;
-    }
-
-    public double mul(int num1, int num2) {
-        result = num1 * num2;
-        return result;
-    }
-
-    public double div(int num1, int num2) {
-        result = num1 / num2;
         return result;
     }
 
