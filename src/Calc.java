@@ -6,7 +6,7 @@ public class Calc {
         Scanner sc = new Scanner(System.in);
         boolean flag = true;
 
-        ArithmeticCalculator arith_calc=new ArithmeticCalculator();
+        ArithmeticCalculator<Double> arith_calc=new ArithmeticCalculator();
         CircleCalculator circle_calc=new CircleCalculator();
 //        int[] res=new int[10];
         int num = 0;
@@ -16,19 +16,24 @@ public class Calc {
 
                 case 1:
                     System.out.print("첫 번째 숫자를 입력하세요: ");
-                    int firstNum = sc.nextInt();
+                    double firstNum = sc.nextInt();
                     System.out.print("두 번째 숫자를 입력하세요: ");
-                    int secondNum = sc.nextInt();
+                    double secondNum = sc.nextInt();
 
                     System.out.print("사칙연산 기호를 입력하세요: ");
-                    char operator = sc.next().charAt(0);
+                    String operator = sc.next();
                     double result = 0;
                     arith_calc.setNum1(firstNum);
                     arith_calc.setNum2(secondNum);
                     arith_calc.setOperator(operator);
                     result = arith_calc.calc();
-
-                    System.out.println("결과: " + result);
+                    if (result % 1 == 0) {
+                        // 결과가 정수일 때
+                        System.out.println("결과: " + (int) result);
+                    } else {
+                        // 결과가 실수일 때
+                        System.out.println("결과: " + result);
+                    }
                     arith_calc.addResult(result);
                     break;
                 case 2:

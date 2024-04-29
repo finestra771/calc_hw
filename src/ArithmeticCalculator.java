@@ -1,48 +1,45 @@
 import java.util.ArrayList;
 
-public class ArithmeticCalculator implements Calculator {
-    private int num1;
-    private int num2;
+public class ArithmeticCalculator<T extends Number> implements Calculator {
+    private T num1;
+    private T num2;
     private double result;
-    private char operator;
-    ArrayList<Double> res = new ArrayList();
+    private String operator;
+    ArrayList<Double> res = new ArrayList<>();
     AddOperator addOperator;
     SubtractOperator subtractOperator;
     MultiplyOperator multiplyOperator;
     DivideOperator divideOperator;
-
-    public ArithmeticCalculator(int num1, int num2) {
+    public ArithmeticCalculator(T num1, T num2) {
         this.num1 = num1;
         this.num2 = num2;
     }
 
     public ArithmeticCalculator() {
-        this.num1 = 0;
-        this.num2 = 0;
-        this.result = 0;
         addOperator = new AddOperator();
         subtractOperator = new SubtractOperator();
         multiplyOperator = new MultiplyOperator();
         divideOperator = new DivideOperator();
     }
-
     public double calc() {
-        char operator=getOperator();
-        switch (operator) {
-            case '+':
-                result=addOperator.operate(num1, num2);
+        String operator = getOperator();
+        OperatorType operatorType=OperatorType.fromSymbol(operator);
+
+        switch (operatorType) {
+            case ADDITION:
+                setResult(addOperator.operate(num1.doubleValue(), num2.doubleValue()));
                 break;
-            case '-':
-                result=subtractOperator.operate(num1, num2);
+            case SUBTRACTION:
+                setResult(subtractOperator.operate(num1.doubleValue(), num2.doubleValue()));
                 break;
-            case '*':
-                result=multiplyOperator.operate(num1, num2);
+            case MULTIPLICATION:
+                setResult(multiplyOperator.operate(num1.doubleValue(), num2.doubleValue()));
                 break;
-            case '/':
-                if (num2 != 0) result=divideOperator.operate(num1, num2);
+            case DIVISION:
+                if (!num2.equals(0)) setResult(divideOperator.operate(num1.doubleValue(), num2.doubleValue()));
                 else {
                     System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                    result = 0;
+                    return 0;
                 }
         }
         addResult(result);
@@ -50,11 +47,11 @@ public class ArithmeticCalculator implements Calculator {
     }
 
     //getter
-    public int getNum1() {
+    public T getNum1() {
         return num1;
     }
 
-    public int getNum2() {
+    public T getNum2() {
         return num2;
     }
 
@@ -63,15 +60,15 @@ public class ArithmeticCalculator implements Calculator {
     }
 
     //setter
-    public void setNum1(int num1) {
+    public void setNum1(T num1) {
         this.num1 = num1;
     }
 
-    public void setNum2(int num2) {
+    public void setNum2(T num2) {
         this.num2 = num2;
     }
 
-    public void setResult(int result) {
+    public void setResult(double result) {
         this.result = result;
     }
 
@@ -82,14 +79,17 @@ public class ArithmeticCalculator implements Calculator {
     public void removeResult(int num) {
         res.remove(num);
     }
-    public void setOperator(char operator) {
+
+    public void setOperator(String operator) {
         this.operator = operator;
     }
-    public char getOperator() {
+
+    public String getOperator() {
         return operator;
     }
+
     public void inquiryResults() {
-        for (Object i : res) {
+        for (Double i : res) {
             System.out.print(i + " ");
         }
     }
