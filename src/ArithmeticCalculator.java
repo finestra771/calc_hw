@@ -21,7 +21,7 @@ public class ArithmeticCalculator<T extends Number> implements Calculator {
         multiplyOperator = new MultiplyOperator();
         divideOperator = new DivideOperator();
     }
-    public double calc() {
+    public double calc(){
         String operator = getOperator();
         OperatorType operatorType=OperatorType.fromSymbol(operator);
 
@@ -36,11 +36,7 @@ public class ArithmeticCalculator<T extends Number> implements Calculator {
                 setResult(multiplyOperator.operate(num1.doubleValue(), num2.doubleValue()));
                 break;
             case DIVISION:
-                if (!num2.equals(0)) setResult(divideOperator.operate(num1.doubleValue(), num2.doubleValue()));
-                else {
-                    System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                    return 0;
-                }
+                setResult(divideOperator.operate(num1.doubleValue(), num2.doubleValue()));
         }
         addResult(result);
         return result;
