@@ -10,6 +10,7 @@ public class ArithmeticCalculator<T extends Number> implements Calculator {
     SubtractOperator subtractOperator;
     MultiplyOperator multiplyOperator;
     DivideOperator divideOperator;
+
     public ArithmeticCalculator(T num1, T num2) {
         this.num1 = num1;
         this.num2 = num2;
@@ -21,9 +22,10 @@ public class ArithmeticCalculator<T extends Number> implements Calculator {
         multiplyOperator = new MultiplyOperator();
         divideOperator = new DivideOperator();
     }
-    public double calc(){
+
+    public double calc() {
         String operator = getOperator();
-        OperatorType operatorType=OperatorType.fromSymbol(operator);
+        OperatorType operatorType = OperatorType.fromSymbol(operator);
 
         switch (operatorType) {
             case ADDITION:
@@ -38,7 +40,6 @@ public class ArithmeticCalculator<T extends Number> implements Calculator {
             case DIVISION:
                 setResult(divideOperator.operate(num1.doubleValue(), num2.doubleValue()));
         }
-        addResult(result);
         return result;
     }
 
@@ -85,8 +86,10 @@ public class ArithmeticCalculator<T extends Number> implements Calculator {
     }
 
     public void inquiryResults() {
-        for (Double i : res) {
-            System.out.print(i + " ");
+        if (!res.isEmpty()) {
+            res.forEach(System.out::println);
+        } else {
+            System.out.println("No results to display.");
         }
     }
 }
