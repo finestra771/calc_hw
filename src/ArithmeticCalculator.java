@@ -23,7 +23,7 @@ public class ArithmeticCalculator<T extends Number> implements Calculator {
         divideOperator = new DivideOperator();
     }
 
-    public double calc() {
+    public double calc() throws ArithmeticException {
         String operator = getOperator();
         OperatorType operatorType = OperatorType.fromSymbol(operator);
 

@@ -6,8 +6,8 @@ public class Calc {
         Scanner sc = new Scanner(System.in);
         boolean flag = true;
 
-        ArithmeticCalculator<Double> arith_calc=new ArithmeticCalculator();
-        CircleCalculator circle_calc=new CircleCalculator();
+        ArithmeticCalculator<Double> arith_calc = new ArithmeticCalculator();
+        CircleCalculator circle_calc = new CircleCalculator();
 //        int[] res=new int[10];
         int num = 0;
         while (flag) {
@@ -26,7 +26,13 @@ public class Calc {
                     arith_calc.setNum1(firstNum);
                     arith_calc.setNum2(secondNum);
                     arith_calc.setOperator(operator);
-                    result = arith_calc.calc();
+                    try{
+                        result = arith_calc.calc();
+                    }
+                    catch (ArithmeticException e) {
+                        System.out.println("0으로 나눌 수 없습니다. 다시 입력해주세요.");
+                        continue;
+                    }
                     if (result % 1 == 0) {
                         // 결과가 정수일 때
                         System.out.println("결과: " + (int) result);
